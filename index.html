@@ -324,8 +324,18 @@
 
         @media (max-width:880px) {
             .hero {
-                flex-direction: column;
-                text-align: left;
+                flex-direction: row;
+                gap: 20px;
+            }
+
+            .hero img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .hero div {
+                width: 65%;
+                /* réduit la largeur du texte */
             }
         }
 
@@ -490,7 +500,8 @@
         <section id="about">
             <div class="section-title">
                 <h2>À propos</h2>
-                <a href="https://www.linkedin.com/in/simon-bonnin-3b2bb423b/" target="_blank" class="muted"><button id="themeToggle" class="btnNavbar">Linkedin</button></a>
+                <a href="https://www.linkedin.com/in/simon-bonnin-3b2bb423b/" target="_blank" class="muted"><button
+                        id="themeToggle" class="btnNavbar">Linkedin</button></a>
             </div>
 
             <p class="muted">
@@ -509,7 +520,8 @@
         <section id="projects">
             <div class="section-title">
                 <h2>Projets</h2>
-                <a href="https://github.com/sbonnin3" target="_blank" class="muted"><button id="themeToggle" class="btnNavbar">GitHub</button></a>
+                <a href="https://github.com/sbonnin3" target="_blank" class="muted"><button id="themeToggle"
+                        class="btnNavbar">GitHub</button></a>
             </div>
 
             <div class="projects">
@@ -637,7 +649,8 @@
                     </article>
                 </a>
 
-                <a href="https://www.superprof.fr/cours-maths-aide-devoirs-etudiant-but-maths-informatique.html" target="_blank" style="text-decoration:none;color:inherit;">
+                <a href="https://www.superprof.fr/cours-maths-aide-devoirs-etudiant-but-maths-informatique.html"
+                    target="_blank" style="text-decoration:none;color:inherit;">
                     <article class="project">
                         <div class="thumb"><img src="assets/superprof.png" alt=""></div>
                         <h3>Professeur particulier (2022–2024)</h3>
@@ -690,6 +703,29 @@
         burger.addEventListener("click", () => {
             burger.classList.toggle("active");
             mainNav.classList.toggle("active");
+        });
+
+        /***********************
+ * FERMETURE DU MENU MOBILE
+ ************************/
+
+        // Fermer quand on clique sur un lien du menu
+        mainNav.querySelectorAll("a, button").forEach(el => {
+            el.addEventListener("click", () => {
+                burger.classList.remove("active");
+                mainNav.classList.remove("active");
+            });
+        });
+
+        // Fermer en cliquant à l'extérieur
+        document.addEventListener("click", (e) => {
+            const clickInsideMenu = mainNav.contains(e.target);
+            const clickOnBurger = burger.contains(e.target);
+
+            if (!clickInsideMenu && !clickOnBurger && mainNav.classList.contains("active")) {
+                burger.classList.remove("active");
+                mainNav.classList.remove("active");
+            }
         });
 
         /***********************
