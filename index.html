@@ -1,0 +1,819 @@
+<!--
+  Portfolio Template - Single File HTML
+  - Responsive, accessible, and easy to customize
+  - Includes: Hero, About, Projects grid, Skills, Contact, Dark/Light toggle
+  - To preview: save as `index.html` and open in a browser
+-->
+
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simon Bonnin — Portfolio</title>
+    <meta name="description" content="Portfolio de Simon Bonnin — développeur·se, designer, créateur·rice." />
+
+    <!-- Fonts: system-first fallback -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --muted: #93a3b8;
+            --text: #e6eef8;
+            --accent: #7c3aed;
+            /* violet */
+            --glass: rgba(255, 255, 255, 0.04);
+            --radius: 14px;
+            --max-width: 1100px;
+            --container-padding: 24px;
+        }
+
+        /* Light theme overrides (applied when .light-theme on body) */
+        .light-theme {
+            --bg: #f7fbff;
+            --card: #ffffff;
+            --muted: #4b5563;
+            --text: #0b1220;
+            --accent: #0f766e;
+            /* teal */
+            --glass: rgba(2, 6, 23, 0.03);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%;
+            padding-top: 120px;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+            background: radial-gradient(1200px 700px at 10% 10%, rgba(124, 58, 237, 0.06), transparent), var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.5;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .wrap {
+            max-width: var(--max-width);
+            width: 100%;
+            padding: 0 var(--container-padding)
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: var(--card);
+            box-shadow: 0 6px 18px rgba(2, 6, 23, 0.2);
+        }
+
+        .brand h1 {
+            font-size: 1rem;
+            margin: 0
+        }
+
+        .brand p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: var(--muted)
+        }
+
+        nav {
+            display: flex;
+            gap: 12px
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 8px 12px;
+            border-radius: 10px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            backdrop-filter: blur(6px);
+        }
+
+        .btn.primary {
+            background: linear-gradient(90deg, var(--accent), transparent);
+            border: none;
+            color: white
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px
+        }
+
+        .hero {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            padding: 28px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            border-radius: var(--radius);
+            box-shadow: 0 6px 30px rgba(2, 6, 23, 0.35);
+        }
+
+        .hero .left {
+            flex: 1
+        }
+
+        .headline {
+            font-size: clamp(1.3rem, 3.2vw, 2.2rem);
+            margin: 0 0 8px 0
+        }
+
+        .lead {
+            color: var(--muted);
+            margin: 0 0 16px 0
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .portrait {
+            width: 140px;
+            height: 140px;
+            border-radius: 18px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 4px solid var(--glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+        }
+
+        .portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        /* Sections */
+        section {
+            padding: 18px;
+            background: var(--card);
+            border-radius: 12px
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 1.05rem
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        /* Projects grid */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 14px
+        }
+
+        .project {
+            border-radius: 12px;
+            padding: 14px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent);
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .project .thumb {
+            height: 130px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.02));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--muted)
+        }
+
+        .project h3 {
+            margin: 0;
+            font-size: 1rem
+        }
+
+        .project p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.9rem
+        }
+
+        .project .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .tag {
+            padding: 6px 8px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.03)
+        }
+
+        /* Skills */
+        .skills {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+
+        .skill {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.02);
+            font-weight: 600
+        }
+
+        /* Contact form */
+        form {
+            display: grid;
+            gap: 10px
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: var(--max-width);
+            z-index: 1000;
+            padding: 20px var(--container-padding);
+            background: var(--bg);
+            backdrop-filter: blur(10px);
+        }
+
+        input,
+        textarea {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            background: transparent;
+            color: var(--text);
+            outline: none
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            color: var(--muted);
+            font-size: 0.9rem
+        }
+
+        /* Utilities */
+        .grid {
+            display: grid;
+            gap: 14px
+        }
+
+        /* Responsive */
+        @media (max-width:880px) {
+            .hero {
+                flex-direction: column;
+                align-items: flex-start
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px
+            }
+
+            .portrait {
+                width: 120px;
+                height: 120px
+            }
+        }
+
+        /* Micro-interactions */
+        .btn,
+        .project {
+            transition: all 160ms ease
+        }
+
+        .btn:hover {
+            transform: translateY(-3px)
+        }
+
+        .project:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(2, 6, 23, 0.35)
+        }
+
+        /* Accessibility focus */
+        a:focus,
+        button:focus,
+        input:focus,
+        textarea:focus {
+            outline: 3px solid rgba(124, 58, 237, 0.18);
+            outline-offset: 2px
+        }
+
+        /* --- BURGER BUTTON --- */
+        .burger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+        }
+
+        .burger span {
+            width: 100%;
+            height: 3px;
+            background: var(--text);
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        /* Animation du burger en croix */
+        .burger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* --- MENU MOBILE --- */
+        @media (max-width: 880px) {
+
+            /* Cacher le menu desktop */
+            nav[aria-label="liens sociaux"] {
+                display: none;
+            }
+
+            /* Menu caché au départ */
+            nav#mainNav {
+                position: fixed;
+                top: 0;
+                right: -70%;
+                height: 100vh;
+                width: 70%;
+                padding: 120px 30px 30px;
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(20px);
+                border-left: 1px solid rgba(255, 255, 255, 0.2);
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.25);
+
+                transition: right 0.35s cubic-bezier(.4, 0, .2, 1);
+                z-index: 2500;
+            }
+
+            /* Apparition */
+            nav#mainNav.active {
+                right: 0;
+            }
+
+            /* Liens du menu mobile */
+            nav#mainNav a {
+                font-size: 1.1rem;
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+                transition: 0.2s;
+            }
+
+            nav#mainNav a:hover {
+                opacity: 1;
+                transform: translateX(4px);
+            }
+
+            /* Afficher le burger */
+            .burger {
+                display: flex;
+            }
+        }
+
+        /* --- MODAL SUCCESS --- */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 5000;
+        }
+
+        .modal-content {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .modal button {
+            margin-top: 12px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            background: var(--accent);
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+
+<body>
+    <div class="wrap" role="document">
+        <header>
+            <div class="brand">
+                <div class="logo" aria-hidden>SB</div>
+                <div>
+                    <h1>Simon Bonnin</h1>
+                    <p class="muted">Développeur Web & Mobile</p>
+                </div>
+            </div>
+
+            <div class="burger" id="burger">
+                <span></span><span></span><span></span>
+            </div>
+
+            <nav aria-label="navigation principale" id="mainNav">
+                <button id="themeToggle" class="btn" title="Basculer thème">Thème</button>
+                <a href="#contact" class="btn primary">Contact</a>
+            </nav>
+            <nav aria-label="liens sociaux" style="display:flex;gap:10px;margin-top:6px">
+                <a class="btn" href="https://github.com/sbonnin3" target="_blank">GitHub</a>
+                <a class="btn" href="https://www.linkedin.com/in/simon-bonnin-3b2bb423b/" target="_blank">LinkedIn</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero" aria-labelledby="intro">
+                <div class="left">
+                    <h2 class="headline">Simon Bonnin — je développe des applications web et mobiles performantes.</h2>
+                    <p class="lead">Étudiant en BUT Informatique, passionné par le développement, je réalise des
+                        applications web et mobiles efficaces dans différents langages.</p>
+
+                    <div class="cta-row">
+                        <a href="#projects" class="btn">Voir mes projets</a>
+                        <a href="#contact" class="btn">Me contacter</a>
+                        <a href="assets/CV_SIMON_BONNIN.pdf" class="btn" target="_blank">Mon CV</a>
+
+                    </div>
+                </div>
+
+                <div class="portrait" aria-hidden>
+                    <!-- Replace with your image -->
+                    <img src="assets/photo_simon.png" alt="Portrait de Simon Bonnin" />
+                </div>
+            </section>
+
+            <section id="about" aria-labelledby="about-title">
+                <div class="section-title">
+                    <h2 id="about-title">À propos</h2>
+                    <span class="muted">Profil</span>
+                </div>
+                <div class="grid">
+                    <p class="muted">Passionné par le développement web et mobile, j’ai acquis une solide base en
+                        programmation (Java, Python, C, C++, JS) ainsi qu'une vraie autonomie et adaptabilité grâce à de
+                        nombreux projets et stages.</p>
+
+                    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+                        <div>
+                            <strong>Localisation</strong>
+                            <div class="muted">Belfort, France</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" aria-labelledby="projects-title">
+                <div class="section-title">
+                    <h2 id="projects-title">Projets</h2>
+                    <span class="muted">Sélection</span>
+                </div>
+
+                <div class="projects">
+
+                    <!-- Projet : LISI Aerospace -->
+                    <article class="project" aria-labelledby="pLisi">
+                        <div class="thumb"><img src="assets/lisi.png" alt="LISI Aerospace"
+                                style="max-width:100%;max-height:100%;object-fit:contain"></div>
+                        <h3 id="pLisi">Automatisation & transfert de données</h3>
+                        <p class="muted">Stage chez LISI Aerospace : scripts Python, optimisation de flux, analyse des
+                            besoins, autonomie, bases de données.</p>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Automatisation</span>
+                            <span class="tag">Analyse</span>
+                            <span class="tag">SQL Server</span>
+                            <span class="tag">GitLab</span>
+                        </div>
+                    </article>
+
+                    <a href="https://f-f-three.vercel.app/" target="_blank" style="text-decoration:none;color:inherit">
+                        <article class="project" aria-labelledby="pFastFab">
+                            <div class="thumb"><img src="assets/fastandfabulous.png" alt="Fast and Fabulous"
+                                    style="max-width:100%;max-height:100%;object-fit:contain"></div>
+
+                            <h3 id="pFastFab">Fast & Fabulous — Application web évènementielle</h3>
+
+                            <p class="muted">
+                                Application web complète réalisée pour un événement au circuit Paul Ricard :
+                                authentification,
+                                gestion des utilisateurs, interface administrateur, système de prestataires, prise de
+                                commandes et carte interactive 3D modélisée avec Blender.
+                                <br>Voir le site : <strong>f-f-three.vercel.app</strong>
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">VueJS</span>
+                                <span class="tag">NodeJS</span>
+                                <span class="tag">API REST</span>
+                                <span class="tag">SQL</span>
+                                <span class="tag">3D / Blender</span>
+                                <span class="tag">Auth</span>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="https://sae-flip.vercel.app/" target="_blank" style="text-decoration:none;color:inherit">
+                        <article class="project" aria-labelledby="pFlip">
+                            <div class="thumb"><img src="assets/flip.png" alt="FLIP"
+                                    style="max-width:100%;max-height:100%;object-fit:contain"></div>
+
+                            <h3 id="pFlip">FLIP — Application web VueJS</h3>
+
+                            <p class="muted">
+                                Application web développée en équipe pour gérer le festival FLIP : authentification,
+                                gestion des jeux, création de tournois, interface administrateur et visualisation des
+                                résultats, carte interactive réalisée avec Leaflet et OpenStreetMap.
+                                <br>Voir le site : <strong>sae-flip.vercel.app</strong>
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">VueJS</span>
+                                <span class="tag">NodeJS</span>
+                                <span class="tag">API REST</span>
+                                <span class="tag">SQL</span>
+                                <span class="tag">Auth</span>
+                                <span class="tag">Leaflet</span>
+                            </div>
+                        </article>
+                    </a>
+                    <!-- Add more project cards as needed -->
+                </div>
+            </section>
+
+            <section id="skills" aria-labelledby="skills-title">
+                <div class="section-title">
+                    <h2 id="skills-title">Compétences</h2>
+                    <span class="muted">Tech & méthodes</span>
+                </div>
+
+                <div class="skills">
+                    <span class="skill">Java</span>
+                    <span class="skill">Python</span>
+                    <span class="skill">C / C++</span>
+                    <span class="skill">HTML/CSS</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">NodeJS</span>
+                    <span class="skill">VueJS</span>
+                    <span class="skill">SQL / MySQL / SQL Server</span>
+                    <span class="skill">Android (Java/Kotlin)</span>
+                    <span class="skill">iOS (Swift)</span>
+                    <span class="skill">Trello</span>
+                    <span class="skill">GitHub</span>
+                    <span class="skill">GitLab</span>
+                    <span class="skill">Travail d'équipe</span>
+                </div>
+            </section>
+
+            <section id="contact" aria-labelledby="contact-title">
+                <div class="section-title">
+                    <h2 id="contact-title">Contact</h2>
+                    <span class="muted">Discutons</span>
+                </div>
+
+                <form id="contactForm">
+                    <input id="name" type="text" name="name" placeholder="Votre nom" required />
+                    <input id="email" type="email" name="email" placeholder="Votre email" required />
+                    <input id="subject" type="text" name="subject" placeholder="Sujet" />
+                    <textarea id="message" name="message" placeholder="Votre message" required></textarea>
+
+                    <button type="submit" class="btn primary">Envoyer</button>
+                </form>
+            </section>
+
+
+            <section id="experience" aria-labelledby="exp-title">
+                <div class="section-title">
+                    <h2 id="exp-title">Expériences</h2>
+                    <span class="muted">Stages & jobs</span>
+                </div>
+
+                <div class="projects">
+
+                    <a href="https://www.lisi-aerospace.com/fr/" target="_blank"
+                        style="text-decoration:none;color:inherit">
+                        <article class="project">
+                            <div class="thumb"><img src="assets/lisi.png" alt="LISI Aérospace"
+                                    style="max-width:100%;max-height:100%;object-fit:contain"></div>
+                            <h3>LISI Aerospace — Stagiaire informatique (2024)</h3>
+                            <p class="muted">Automatisation Python, optimisation de transferts de données, analyse des
+                                besoins, autonomie.</p>
+                        </article>
+                    </a>
+
+                    <a href="https://www.microgat.fr/" target="_blank" style="text-decoration:none;color:inherit">
+                        <article class="project">
+                            <div class="thumb"><img src="assets/microgat.png" alt="Microgat Informatique"
+                                    style="max-width:100%;max-height:100%;object-fit:contain"></div>
+                            <h3>Microgat Informatique — Stage (2021)</h3>
+                            <p class="muted">Installation de machines, maintenance, découverte du métier, orientation
+                                professionnelle.</p>
+                        </article>
+                    </a>
+
+                    <a href="https://pavillondeskids.ch/" target="_blank" style="text-decoration:none;color:inherit">
+                        <article class="project">
+                            <div class="thumb"><img src="assets/pavillon.png" alt="Pavillon des Kids"
+                                    style="max-width:100%;max-height:100%;object-fit:contain"></div>
+                            <h3>Pavillon des Kids — Serveur (2025)</h3>
+                            <p class="muted">Accueil, service, gestion clients.</p>
+                        </article>
+                    </a>
+
+                    <a href="https://www.superprof.fr/" target="_blank" style="text-decoration:none;color:inherit">
+                        <article class="project">
+                            <div class="thumb"><img src="assets/superprof.png" alt="Superprof / Cours particuliers"
+                                    style="max-width:100%;max-height:100%;object-fit:contain"></div>
+                            <h3>Professeur particulier (2022–2024)</h3>
+                            <p class="muted">Soutien scolaire, mathématiques collège/lycée, pédagogie, autonomie et
+                                progression des élèves.</p>
+                        </article>
+                    </a>
+
+                </div>
+            </section>
+
+            <footer>
+                <div>© <span id="year"></span> Simon Bonnin — Tous droits réservés</div>
+            </footer>
+        </main>
+    </div>
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <h3>Message envoyé !</h3>
+            <p>Votre message a bien été envoyé</p>
+            <button id="close-modal">OK</button>
+        </div>
+    </div>
+    <script>
+        // Small interactive helpers: theme toggle, CV download, fill year
+        const body = document.body;
+        const themeToggle = document.getElementById('themeToggle');
+
+        // Load saved theme
+        const saved = localStorage.getItem('theme');
+        if (saved === 'light') body.classList.add('light-theme');
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-theme');
+            if (body.classList.contains('light-theme')) localStorage.setItem('theme', 'light');
+            else localStorage.removeItem('theme');
+        });
+
+        // Fill current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Basic progressive enhancement for contact (fallback to mailto if JS present)
+        const form = document.getElementById('contactForm');
+        emailjs.init("tuJur3bnOZBsD0Grf");
+
+        // Quand on clique sur "Envoyer"
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // 🔒 Empêcher le spam :
+            const submitBtn = document.querySelector("button[type='submit']");
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Envoi...";
+
+            // ---- EmailJS envoi ----
+            emailjs.send("service_zk2llvh", "template_qwp1j4r", {
+                from_name: document.getElementById("name").value,
+                reply_to: document.getElementById("email").value,
+                subject: document.getElementById("subject").value,
+                message: document.getElementById("message").value
+            })
+                .then(() => {
+                    // Réinitialise le formulaire
+                    document.getElementById("contactForm").reset();
+
+                    // Réactive le bouton
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "Envoyer";
+
+                    // 🎉 Ouvre le popup de succès
+                    document.getElementById("success-modal").style.display = "flex";
+                })
+                .catch(() => {
+                    // Réactive le bouton même en cas d'erreur
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "Envoyer";
+
+                    alert("Erreur lors de l'envoi.");
+                });
+        });
+
+        const burger = document.getElementById("burger");
+        const mainNav = document.getElementById("mainNav");
+
+        burger.addEventListener("click", () => {
+            burger.classList.toggle("active");
+            mainNav.classList.toggle("active");
+        });
+
+        // Fermeture bouton OK
+        document.getElementById("close-modal").addEventListener("click", () => {
+            document.getElementById("success-modal").style.display = "none";
+        });
+
+        // Fermeture clic en dehors
+        document.getElementById("success-modal").addEventListener("click", (e) => {
+            if (e.target.id === "success-modal") {
+                document.getElementById("success-modal").style.display = "none";
+            }
+        });
+    </script>
+</body>
+
+</html>
