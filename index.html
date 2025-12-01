@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Simon Bonnin — Portfolio</title>
-    <meta name="description" content="Portfolio de Simon Bonnin — développeur web et mobile.">
+    <meta name="description" content="Portfolio de Simon Bonnin — développeur informatique.">
 
     <!-- Police sobre et professionnelle -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
             --text-muted: #9aa7bf;
             --accent: #1e6bff;
             --accent-hover: #5591ff;
-
+            --iut-bg: white;
             --radius: 14px;
             --transition: 0.22s ease;
         }
@@ -280,6 +280,10 @@
             opacity: 0;
             transform: translateY(25px);
             animation: fadeIn 0.7s forwards;
+
+            /* Pour que le scroll prenne en compte la navbar fixe */
+            scroll-margin-top: 90px;
+            /* ajuste selon la hauteur réelle de ta navbar */
         }
 
         @keyframes fadeIn {
@@ -324,8 +328,12 @@
 
         @media (max-width:880px) {
             .hero {
-                flex-direction: row;
-                gap: 20px;
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+                /* centre la photo et le texte */
+                text-align: center;
+                /* centre le texte sous la photo */
             }
 
             .hero img {
@@ -334,8 +342,8 @@
             }
 
             .hero div {
-                width: 65%;
-                /* réduit la largeur du texte */
+                width: 100%;
+                /* prend toute la largeur disponible */
             }
         }
 
@@ -480,12 +488,15 @@
         <!-- HERO -->
         <section class="hero">
             <div>
-                <h2 style="font-size:1.6rem;">Je développe des applications web et mobiles performantes.</h2>
+                <h2 style="font-size:1.6rem;">Je développe des applications performantes.</h2>
                 <p class="muted" style="margin-top:10px;">
-                    Étudiant en BUT Informatique, passionné par le développement, je conçois des applications efficaces
-                    dans différents langages.
+                    Étudiant en BUT Informatique, j’ai choisi de construire mes compétences sur de bonnes bases dès le
+                    début.
+                    Je suis quelqu’un d’acharné, déterminé et profondément motivé à apprendre ; cette volonté de
+                    progresser
+                    rapidement me permet d’être polyvalent et d’adopter les bonnes pratiques professionnelles dès le
+                    départ.
                 </p>
-
                 <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;">
                     <a href="#projects" class="btn">Voir mes projets</a>
                     <a href="#contact" class="btn">Me contacter</a>
@@ -505,14 +516,47 @@
             </div>
 
             <p class="muted">
-                Passionné par le développement web et mobile, j’ai acquis une solide base en programmation (Java,
-                Python, C, C++, JS)
-                ainsi qu'une vraie autonomie et adaptabilité grâce à de nombreux projets et stages.
+                Passionné par le développement informatique, je me distingue par ma capacité à apprendre vite,
+                à m’adapter à n’importe quel environnement technique et à transformer un besoin en solution concrète.
+                Mes expériences et projets m’ont permis de maîtriser plusieurs langages (Java, Python, C, C++,
+                JavaScript)
+                tout en développant une vraie rigueur et autonomie.
             </p>
+        </section>
 
-            <div style="margin-top:12px;">
-                <strong>Localisation :</strong>
-                <div class="muted">Belfort, France</div>
+        <!-- FORMATION -->
+        <section id="formation">
+            <div class="section-title">
+                <h2>Formation</h2>
+                <a href="https://www.umlp.fr/composantes/iut-nord-franche-comte" target="_blank" class="muted">
+                    <button class="btnNavbar">Site de l'IUT</button>
+                </a>
+            </div>
+
+            <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap;">
+
+                <!-- Logo -->
+                <img src="assets/iut.png" alt="Logo IUT Nord-Franche-Comté" style="width:120px; height:auto; border-radius:12px;
+            background: var(--iut-bg);
+            padding:8px;">
+
+                <!-- Texte -->
+                <div style="flex:1; min-width:250px;">
+                    <h3 style="margin-bottom:8px;">BUT Informatique — IUT Nord Franche-Comté (Belfort)</h3>
+                    <p class="muted" style="margin-bottom:10px;">
+                        2022–2026 — Formation orientée développement d'applications, gestion de projet,
+                        algorithmique, bases de données, architecture logicielle et cybersécurité.
+                    </p>
+
+                    <div class="tags">
+                        <span class="tag">Développement</span>
+                        <span class="tag">Web</span>
+                        <span class="tag">Mobile</span>
+                        <span class="tag">Projet</span>
+                        <span class="tag">Base de données</span>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -528,7 +572,7 @@
 
                 <article class="project">
                     <div class="thumb"><img src="assets/lisi.png" alt=""></div>
-                    <h3>Automatisation & transfert de données</h3>
+                    <h3>Stage — Automatisation & transfert de données</h3>
                     <p class="muted">Stage chez LISI Aerospace : scripts Python, optimisation de flux, analyse des
                         besoins, bases de données.</p>
                     <div class="tags">
@@ -543,7 +587,7 @@
                 <a href="https://f-f-three.vercel.app/" target="_blank" style="text-decoration:none;color:inherit;">
                     <article class="project">
                         <div class="thumb"><img src="assets/fastandfabulous.png" alt=""></div>
-                        <h3>Fast & Fabulous — Application web évènementielle</h3>
+                        <h3>Projet scolaire : Fast & Fabulous Évènement automobile au circuit Paul Ricard</h3>
                         <p class="muted">
                             Application complète réalisée pour un événement au circuit Paul Ricard :
                             authentification, interface admin, prestataires, commandes, carte 3D Blender.
@@ -561,7 +605,8 @@
                 <a href="https://sae-flip.vercel.app/" target="_blank" style="text-decoration:none;color:inherit;">
                     <article class="project">
                         <div class="thumb"><img src="assets/flip.png" alt=""></div>
-                        <h3>FLIP — Application web VueJS</h3>
+                        <h3>Projet scolaire : FLIP (Festival Ludique International de Parthenay)
+                        </h3>
                         <p class="muted">Application web pour gérer un festival : jeux, tournois, administration, carte
                             interactive Leaflet.</p>
                         <div class="tags">
@@ -580,7 +625,7 @@
         <section id="skills">
             <div class="section-title">
                 <h2>Compétences</h2>
-                <span class="muted">Tech & méthodes</span>
+                <span class="muted">Hard skills</span>
             </div>
 
             <div class="skills">
@@ -628,16 +673,16 @@
                     style="text-decoration:none;color:inherit;">
                     <article class="project">
                         <div class="thumb"><img src="assets/lisi.png" alt=""></div>
-                        <h3>LISI Aerospace — Stagiaire informatique (2024)</h3>
-                        <p class="muted">Automatisation Python, optimisation transferts, analyse des besoins.</p>
+                        <h3>LISI Aerospace — Stagiaire Python (2024)</h3>
+                        <p class="muted">Automatisation en Python, optimisation de transferts, analyse des besoins.</p>
                     </article>
                 </a>
 
                 <a href="https://www.microgat.fr/" target="_blank" style="text-decoration:none;color:inherit;">
                     <article class="project">
                         <div class="thumb"><img src="assets/microgat.png" alt=""></div>
-                        <h3>Microgat Informatique — Stage (2021)</h3>
-                        <p class="muted">Installation machines, maintenance, découverte métier.</p>
+                        <h3>Microgat Informatique — Stage volontaire (2021)</h3>
+                        <p class="muted">Installation de machines, maintenance, découverte du métier.</p>
                     </article>
                 </a>
 
@@ -645,7 +690,7 @@
                     <article class="project">
                         <div class="thumb"><img src="assets/pavillon.png" alt=""></div>
                         <h3>Pavillon des Kids — Serveur (2025)</h3>
-                        <p class="muted">Accueil & service client.</p>
+                        <p class="muted">Accueil et service des clients, langues étrangères.</p>
                     </article>
                 </a>
 
@@ -653,7 +698,7 @@
                     target="_blank" style="text-decoration:none;color:inherit;">
                     <article class="project">
                         <div class="thumb"><img src="assets/superprof.png" alt=""></div>
-                        <h3>Professeur particulier (2022–2024)</h3>
+                        <h3>Professeur particulier de mathématiques (2022–2024)</h3>
                         <p class="muted">Soutien scolaire, pédagogie, autonomie.</p>
                     </article>
                 </a>
