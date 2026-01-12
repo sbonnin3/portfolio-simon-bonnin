@@ -351,12 +351,6 @@
         *                  PROJECT CARDS
         ****************************************************/
 
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 16px;
-        }
-
         .project {
             padding: 16px;
             border-radius: 12px;
@@ -365,7 +359,7 @@
             transition: var(--transition);
         }
 
-        .project:hover {
+        .projects a:hover .project {
             transform: translateY(-4px);
             border-color: var(--accent);
         }
@@ -560,67 +554,6 @@
             </div>
         </section>
 
-        <!-- PROJECTS -->
-        <section id="projects">
-            <div class="section-title">
-                <h2>Projets</h2>
-                <a href="https://github.com/sbonnin3" target="_blank" class="muted"><button id="themeToggle"
-                        class="btnNavbar">GitHub</button></a>
-            </div>
-
-            <div class="projects">
-
-                <article class="project">
-                    <div class="thumb"><img src="assets/lisi.png" alt=""></div>
-                    <h3>Stage — Automatisation & transfert de données</h3>
-                    <p class="muted">Stage chez LISI Aerospace : scripts Python, optimisation de flux, analyse des
-                        besoins, bases de données.</p>
-                    <div class="tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Automatisation</span>
-                        <span class="tag">Analyse</span>
-                        <span class="tag">SQL Server</span>
-                        <span class="tag">GitLab</span>
-                    </div>
-                </article>
-
-                <a href="https://f-f-three.vercel.app/" target="_blank" style="text-decoration:none;color:inherit;">
-                    <article class="project">
-                        <div class="thumb"><img src="assets/fastandfabulous.png" alt=""></div>
-                        <h3>Projet scolaire : Fast & Fabulous Évènement automobile au circuit Paul Ricard</h3>
-                        <p class="muted">
-                            Application complète réalisée pour un événement au circuit Paul Ricard :
-                            authentification, interface admin, prestataires, commandes, carte 3D Blender.
-                        </p>
-                        <div class="tags">
-                            <span class="tag">VueJS</span>
-                            <span class="tag">NodeJS</span>
-                            <span class="tag">API REST</span>
-                            <span class="tag">SQL</span>
-                            <span class="tag">3D</span>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="https://sae-flip.vercel.app/" target="_blank" style="text-decoration:none;color:inherit;">
-                    <article class="project">
-                        <div class="thumb"><img src="assets/flip.png" alt=""></div>
-                        <h3>Projet scolaire : FLIP (Festival Ludique International de Parthenay)
-                        </h3>
-                        <p class="muted">Application web pour gérer un festival : jeux, tournois, administration, carte
-                            interactive Leaflet.</p>
-                        <div class="tags">
-                            <span class="tag">VueJS</span>
-                            <span class="tag">NodeJS</span>
-                            <span class="tag">API REST</span>
-                            <span class="tag">SQL</span>
-                            <span class="tag">Leaflet</span>
-                        </div>
-                    </article>
-                </a>
-            </div>
-        </section>
-
         <!-- SKILLS -->
         <section id="skills">
             <div class="section-title">
@@ -642,22 +575,6 @@
                 <span class="skill">GitHub / GitLab</span>
                 <span class="skill">Travail d'équipe</span>
             </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section id="contact">
-            <div class="section-title">
-                <h2>Contact</h2>
-                <span class="muted">Discutons</span>
-            </div>
-
-            <form id="contactForm">
-                <input id="name" type="text" placeholder="Votre nom" required>
-                <input id="email" type="email" placeholder="Votre email" required>
-                <input id="subject" type="text" placeholder="Sujet">
-                <textarea id="message" placeholder="Votre message" required></textarea>
-                <button class="btn primary" type="submit">Envoyer</button>
-            </form>
         </section>
 
         <!-- EXPERIENCE -->
@@ -761,6 +678,83 @@
                     </div>
                 </article>
             </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects">
+            <div class="section-title">
+                <h2>Projets</h2>
+                <a href="https://github.com/sbonnin3" target="_blank" class="muted"><button id="themeToggle"
+                        class="btnNavbar">GitHub</button></a>
+            </div>
+
+            <div class="projects">
+
+                <article class="project">
+                    <div class="thumb"><img src="assets/lisi.png" alt=""></div>
+                    <h3>Stage — Automatisation & transfert de données</h3>
+                    <p class="muted">Stage chez LISI Aerospace : scripts Python, optimisation de flux, analyse des
+                        besoins, bases de données.</p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Automatisation</span>
+                        <span class="tag">Analyse</span>
+                        <span class="tag">SQL Server</span>
+                        <span class="tag">GitLab</span>
+                    </div>
+                </article>
+
+                <a href="https://f-f-three.vercel.app/" target="_blank" style="text-decoration:none;color:inherit;">
+                    <article class="project">
+                        <div class="thumb"><img src="assets/fastandfabulous.png" alt=""></div>
+                        <h3>Projet scolaire : Fast & Fabulous Évènement automobile au circuit Paul Ricard</h3>
+                        <p class="muted">
+                            Application complète réalisée pour un événement au circuit Paul Ricard :
+                            authentification, interface admin, prestataires, commandes, carte 3D Blender.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">VueJS</span>
+                            <span class="tag">NodeJS</span>
+                            <span class="tag">API REST</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">3D</span>
+                        </div>
+                    </article>
+                </a>
+
+                <a href="https://sae-flip.vercel.app/" target="_blank" style="text-decoration:none;color:inherit;">
+                    <article class="project">
+                        <div class="thumb"><img src="assets/flip.png" alt=""></div>
+                        <h3>Projet scolaire : FLIP (Festival Ludique International de Parthenay)
+                        </h3>
+                        <p class="muted">Application web pour gérer un festival : jeux, tournois, administration, carte
+                            interactive Leaflet.</p>
+                        <div class="tags">
+                            <span class="tag">VueJS</span>
+                            <span class="tag">NodeJS</span>
+                            <span class="tag">API REST</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">Leaflet</span>
+                        </div>
+                    </article>
+                </a>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="section-title">
+                <h2>Contact</h2>
+                <span class="muted">Discutons</span>
+            </div>
+
+            <form id="contactForm">
+                <input id="name" type="text" placeholder="Votre nom" required>
+                <input id="email" type="email" placeholder="Votre email" required>
+                <input id="subject" type="text" placeholder="Sujet">
+                <textarea id="message" placeholder="Votre message" required></textarea>
+                <button class="btn primary" type="submit">Envoyer</button>
+            </form>
         </section>
 
         <!-- FOOTER -->
